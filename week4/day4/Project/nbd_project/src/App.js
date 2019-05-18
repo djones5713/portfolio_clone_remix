@@ -12,7 +12,8 @@ class App extends Component {
      }
     // BIND THIS
     this.getTravelList = this.getTravelList.bind(this);
-    this.AddToFavorites = this.AddToFavorites.bind(this);
+    this.addToFavorites = this.addToFavorites.bind(this);
+    this.removeFromFavorites = this.removeFromFavorites.bind(this);
   }
 
 
@@ -35,7 +36,7 @@ class App extends Component {
   
   //POST NEW DATA 
   postNewDestination(location){
-    console.log("Got travel data",location)
+    // console.log("Got travel data",location)
     axios.post('/api/travel', location).then(response => {
       this.setState({
         travelList: response.data
@@ -48,20 +49,54 @@ class App extends Component {
 
 
    // FUNCTIONS 
+ 
+  addToFavorites( id, location, url, description) {
+    let copyFavorites = this.state.travelList.splice(id, 1)
+    this.state.favoritesList.push(
+      {location, url, description}
+    )
 
-   AddToFavorites(location) {
-     console.log("LOCATION PASSED:",location)
-    this.setState({ 
-        favoritesList:location
-    })
-    console.log("added to favorites list", this.state.favoritesList)
-  } 
+    this.setState({
+      favoritesList: copyFavorites
+    });
 
-  //  updateDestination(id, na)
+    console.log("This is the addToFavorites Function",copyFavorites)
+
+  }
+
+  removeFromFavorites( location, url, description) {
+    let copyFavorites = this.state.favoritesList.slice(1,0)
+    this.state.travelList.push(
+      {location, url, description}
+    )
+
+    this.setState({
+      favoritesList: copyFavorites
+    });
+
+    console.log("This is the addToFavorites Function",copyFavorites)
+
+  }
+
+  
+   
 
   render(){
     const { travelList } = this.state;
-    console.log(this.state.favoritesList)
+    const { favoritesList } = this.state;
+    // console.log("This is the render",  favoritesList)
+    const mappedFavoritesList = favoritesList.map(element => {
+    return (
+    <TravelDescription
+     location={element.location}
+     url={element.url}
+     description={element.description}
+
+     />
+      )
+    
+    })
+
     const mappedTravelDescriptions = travelList.map(element => {
     return (
 
@@ -69,15 +104,18 @@ class App extends Component {
      location={element.location}
      url={element.url}
      description={element.description}
-     AddToFavorites ={this.AddToFavorites}
+
+     addToFavorites ={this.addToFavorites}
+     
      />
-  
+     
     );
     });
 
     return (
     <div>
     <div> {mappedTravelDescriptions}</div>
+    <div> {mappedFavoritesList}</div>
     </div>
     )
 

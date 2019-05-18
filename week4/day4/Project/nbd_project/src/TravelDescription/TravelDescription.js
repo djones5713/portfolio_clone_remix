@@ -1,34 +1,36 @@
-import React, { Component } from "react";
+import React  from "react";
 
-export default class TravelDescription extends Component {
-    constructor(props){
-    super(props) 
-     this.state = {
-         travlerList: []
-     }
-
-    }
-
-    
-    // addFromFavorite( id ){
-      
-    // }
-  
-    render(){
+export default function TravelDescription(props) {
+console.log("TravelDescription", props)
         const {
-            location,
-            url,
-            description,
-        } = this.props;
-    
-        console.log(this.props)
+
+          location,
+          url,
+          description,
+        } = props;
+        
+        // console.log("This Props from TravelDescription", props)
         return(
+
         <div>
           <span>{location}</span>
           <img src={url} alt="location" />
           <p>{description}</p>
-          <button onClick={() => this.props.AddToFavorites(location)}>Add</button>
+
+          
+          <button onClick={() => props.addToFavorites( 
+            location,
+            url,
+            description
+            )}>Add</button>
+
+          {/* <button onClick={() => props.removeFromFavorites( 
+            location,
+            url,
+            description
+          )}>Delete</button> */}
+
         </div>
+        
         )
-    }
 }
