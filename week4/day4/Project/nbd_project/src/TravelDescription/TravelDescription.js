@@ -7,10 +7,12 @@ import Style from "./TravelDescription.css";
 export default function TravelDescription(props) {
   // console.log("TravelDescription", props)
   const {
+    
     favorite,
     location,
     url,
     description,
+    id
 
   } = props;
 
@@ -24,7 +26,6 @@ export default function TravelDescription(props) {
       <p className="traveldescription-text-design">{description}</p>
 
 
-
       {!props.favorite ? (
         <button className="traveldescription-button-design" onClick={() => props.addToFavorites(
         location,
@@ -35,6 +36,22 @@ export default function TravelDescription(props) {
       ) 
       : 
       (
+  
+      <div>
+        <input 
+        onChange={(e) => {this.props.new_input = e.target.value}
+         
+        } 
+        
+        value={this.props.new_input} 
+        
+        placeholder="Add Comment" />
+
+
+       <button 
+       onClick={() => props.updateFavoriteById(id, this.props.new_input)}
+       >
+        Submit</button>
 
         <button className="traveldescription-button-design" onClick={() => props.deleteFromFavorites(
         location,
@@ -42,11 +59,18 @@ export default function TravelDescription(props) {
         // description
 
       )}>Delete</button>
+
+      </div>
       )
-        }
+
+      }
+
+
+
+
     </div>
 
-
+    
   )
 
 }

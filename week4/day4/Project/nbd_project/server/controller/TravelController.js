@@ -15,27 +15,18 @@ module.exports = {
     // FAVORITES IS PUSHED TO THE FRONT "RESPONSE IN FRONT IS FAVORITES"
     let { location, url, description, favorite } = req.body;
     id = count + 1
+    let notes = "Your notes";
     count++
     favorite = true
-    favorites.push( {id, location, url, description, favorite });
+    favorites.push( {id, location, url, description, favorite, notes });
     res.status(200).send(favorites);
     console.log("POST BACKEND", favorites)
   },
 
    updateTravelNotes: (req, res, next ) => {
-    const { id } =  req.params;
-    const { user_input } = req.query;
-   
-
-    const index = favorites.findIndex((element) => {
-      element.id = id
-    });
-
-// Must remove element description and replace it with input once front end it created 
-    if (index !== -1 ) {
-      favorites[index].description = user_input;
-    }
-    res.status(200).send(travelCollection);
+     let {id, new_input } = req.body;
+    res.status(200).send(favorites);
+    console.log("UPDATE BACKEND", favorites)
   },
 
     deleteFromTravelCollection: (req, res, next) => {

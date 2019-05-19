@@ -9,7 +9,8 @@ class App extends Component {
     super()
      this.state = {
          travelList: [],
-         favoritesList: []
+         favoritesList: [],
+         new_input: ""
      }
     // BIND THIS
     this.getTravelList = this.getTravelList.bind(this);
@@ -81,7 +82,6 @@ class App extends Component {
      url={element.url}
      location={element.location}
     //  description={element.description}
-     new_input = {element.new_input}
      updateFavoriteById={this.updateFavoriteById}
      deleteFromFavorites = {this.deleteFromFavorites}
      favorite={element.favorite}
