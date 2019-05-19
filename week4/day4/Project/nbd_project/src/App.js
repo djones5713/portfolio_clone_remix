@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Header from "./Header/Header";
 import TravelDescription from "./TravelDescription/TravelDescription";
 import './App.css';
 
@@ -13,7 +14,8 @@ class App extends Component {
     // BIND THIS
     this.getTravelList = this.getTravelList.bind(this);
     this.addToFavorites = this.addToFavorites.bind(this);
-    this.removeFromFavorites = this.removeFromFavorites.bind(this);
+    this.deleteFromFavorites = this.deleteFromFavorites.bind(this);
+    this.updateFavoriteById = this.updateFavoriteById.bind(this);
   }
 
 
@@ -30,91 +32,87 @@ class App extends Component {
         this.setState({
           travelList: response.data
         })
+        console.log("GET END", this.state.travelList)
 
     });
   }
-  
-  //POST NEW DATA 
-  postNewDestination(location){
-    // console.log("Got travel data",location)
-    axios.post('/api/travel', location).then(response => {
+
+   addToFavorites(location, url, description, favorite) {
+     // CREATE THE BODY OBJECT WITH LOCATION URL AND DESCRIPTION AS PROPS
+     const body = {location, url, description, favorite}
+     // HITTING API ON THE BACK IN PASSING THE BODY
+    axios.post('/api/travel', body).then(response => {
+      console.log("RESPONSE", response)
       this.setState({
-        travelList: response.data
+        favoritesList: response.data
       })
     })
-
+    console.log("ADD END", this.state.favrotiesList)
+  }
+    
+  deleteFromFavorites(id){
+    axios.delete(`/api/travel/${id}`).then(response => {
+      this.setState({
+        favoritesList: response.data
+      })
+    })
+    // console.log("DELETE END", this.state.travelList)
   }
 
-   //UPDATE DATA 
-
-
-   // FUNCTIONS 
- 
-  addToFavorites( id, location, url, description) {
-    let copyFavorites = this.state.travelList.splice(id, 1)
-    this.state.favoritesList.push(
-      {location, url, description}
-    )
-
-    this.setState({
-      favoritesList: copyFavorites
-    });
-
-    console.log("This is the addToFavorites Function",copyFavorites)
-
+  updateFavoriteById(id, new_input){
+    axios.put(`/api/travel/${id}?new_input=${new_input}`).then(response => {
+      this.setState({
+   
+        favoritesList: response.data
+      })
+    })
   }
-
-  removeFromFavorites( location, url, description) {
-    let copyFavorites = this.state.favoritesList.slice(1,0)
-    this.state.travelList.push(
-      {location, url, description}
-    )
-
-    this.setState({
-      favoritesList: copyFavorites
-    });
-
-    console.log("This is the addToFavorites Function",copyFavorites)
-
-  }
-
-  
    
 
   render(){
     const { travelList } = this.state;
     const { favoritesList } = this.state;
     // console.log("This is the render",  favoritesList)
+
     const mappedFavoritesList = favoritesList.map(element => {
     return (
+   
     <TravelDescription
-     location={element.location}
      url={element.url}
-     description={element.description}
+     location={element.location}
+    //  description={element.description}
+     new_input = {element.new_input}
+     updateFavoriteById={this.updateFavoriteById}
+     deleteFromFavorites = {this.deleteFromFavorites}
+     favorite={element.favorite}
 
+  
      />
       )
-    
+     
     })
 
     const mappedTravelDescriptions = travelList.map(element => {
+      // console.log("ELEMENT", element)
     return (
-
-    <TravelDescription
-     location={element.location}
+    
+    <TravelDescription 
      url={element.url}
-     description={element.description}
-
+     location={element.location}
+     description={element.description} 
      addToFavorites ={this.addToFavorites}
-     
+     id={element.id}
+     favorite={element.favorite}
      />
-     
+
     );
     });
 
     return (
+  
     <div>
-    <div> {mappedTravelDescriptions}</div>
+    < Header />
+    <div className="traveldescription-container"> {mappedTravelDescriptions}</div>
     <div> {mappedFavoritesList}</div>
     </div>
     )

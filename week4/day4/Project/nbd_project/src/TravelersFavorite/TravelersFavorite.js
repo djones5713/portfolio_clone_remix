@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
 
+
 export default class TravelersFavorite extends Component {
     constructor(){
     super()
         this.state = {
-            favoritesList: []
+            favoritesList: [],
+            user_input: ""
         }
 
     }
 
-    // deleteFromFavorite ( id ){
-    //     if
-    // }
+
     
     render(){
         const {
+            id,
             location,
             url,
-            description,
+            // description,
         } = this.props;
     
       return (
-          <div>
-          <span>{location}</span>
-          <img src={url} alt="location" />
-          <p>{description}</p>
-          {/* <button onClick={}>Delete</button> */}
+        <div >
+        <span>{location}</span>
+        <img src={url} alt="location" />
+        {/* <p>{description}</p> */}
+        <input onChange={e => this.setState({
+            new_input: e.target.value})}
+            value={this.state.new_input}
+        />
+        <button onClick={() => updateFavoriteById(id, this.state.new_input)}>
+        Add Notes
+        </button>
+
           </div>
       )
     }

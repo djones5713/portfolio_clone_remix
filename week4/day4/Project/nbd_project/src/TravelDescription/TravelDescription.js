@@ -1,36 +1,52 @@
-import React  from "react";
+import React from "react";
+import Style from "./TravelDescription.css";
+
+// How to properly import a stylesheet??
+
 
 export default function TravelDescription(props) {
-console.log("TravelDescription", props)
-        const {
+  // console.log("TravelDescription", props)
+  const {
+    favorite,
+    location,
+    url,
+    description,
 
-          location,
-          url,
-          description,
-        } = props;
-        
-        // console.log("This Props from TravelDescription", props)
-        return(
+  } = props;
 
-        <div>
-          <span>{location}</span>
-          <img src={url} alt="location" />
-          <p>{description}</p>
+  // console.log("This Props from TravelDescription", props)
+  return (
 
-          
-          <button onClick={() => props.addToFavorites( 
-            location,
-            url,
-            description
-            )}>Add</button>
 
-          {/* <button onClick={() => props.removeFromFavorites( 
-            location,
-            url,
-            description
-          )}>Delete</button> */}
+    <div className="traveldescription-description-box">
+      <img className="traveldescription-img-design" src={url} alt="location" />
+      <span className="traveldescription-title-design">{location}</span>
+      <p className="traveldescription-text-design">{description}</p>
 
-        </div>
-        
-        )
+
+
+      {!props.favorite ? (
+        <button className="traveldescription-button-design" onClick={() => props.addToFavorites(
+        location,
+        url,
+        description,
+        favorite
+      )}>Add</button>
+      ) 
+      : 
+      (
+
+        <button className="traveldescription-button-design" onClick={() => props.deleteFromFavorites(
+        location,
+        url,
+        // description
+
+      )}>Delete</button>
+      )
+        }
+    </div>
+
+
+  )
+
 }

@@ -1,0 +1,47 @@
+.traveldescription-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto 0;
+    justify-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+
+  }
+
+.traveldescription-description-box{
+    border: .05px solid black;
+    width: 300px;
+    margin-bottom: 30px;
+    text-align: justify;
+    border-radius: 10%;
+    height: 500px;
+}
+
+.traveldescription-img-design{
+    width: 300px;
+    height: 200px;
+  
+}
+
+.traveldescription-title-design{
+    font-size: 18px;
+    text-transform: uppercase;
+
+}
+
+.traveldescription-text-design{
+    font-size: 15px;
+    
+}
+
+.traveldescription-button-design{
+    width: 50%;
+    background-color: #84446C;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-left: 25%;
+
+}

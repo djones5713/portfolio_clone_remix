@@ -11,12 +11,12 @@ const {
 
 app.use(express.json())
 app.get('/api/travel', getTravelData)
+// POST MATCHES WITH API POINT 
 app.post('/api/travel', postTravelCollection)
-// app.put('/api/travel/:id', updateTravelNotes)
+app.put('/api/travel/:id', updateTravelNotes)
 app.delete('/api/travel/:id', deleteFromTravelCollection)
 
 
 app.listen(port, () => console.log(`server listening to ${port}`))
-
 
 
