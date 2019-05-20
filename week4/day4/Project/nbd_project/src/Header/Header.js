@@ -1,22 +1,26 @@
 import React, { Component } from "react";
+import Title from "../Title/Title"
 import Plane from "../plane.jpg";
-import Style from "./Header.css";
+import "./Header.css";
 
 export default class Header extends Component {
  render(){
+   
      return(
-     <div>
+  
+  
+     <div className="header-container">
      <img className="header-img-design" src={Plane} alt="Plane"/>
+    
      <div className="header-searchbar">
-
+     <Title />
          <input className="header-input-design"></input>
          <button className="header-button-design">Search</button>
 
      </div>
-     <div className="header-container"></div>
-     {/* <h1>Title</h1> */}
-     </div>
+
      
+     </div>
      )
  }
 }

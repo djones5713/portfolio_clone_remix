@@ -1,71 +1,79 @@
-import React from "react";
-import Style from "./TravelDescription.css";
+import React,  { Component } from "react";
+import "./TravelDescription.css";
+
 
 // How to properly import a stylesheet??
 
 
-export default function TravelDescription(props) {
-  // console.log("TravelDescription", props)
-  const {
-    
-    favorite,
-    location,
-    url,
-    description,
-    id
+export default class TravelDescription extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      userInput: "",
+      id: 0,
+     
+    }
+  }
 
-  } = props;
+  updateUserInput = (input) => {
+    console.log(input)
+    this.setState({
+      userInput: input.target.value
+    })
+  }
+
+
 
   // console.log("This Props from TravelDescription", props)
-  return (
+  render(){
+  // console.log(this.props)
+    return (
 
 
-    <div className="traveldescription-description-box">
-      <img className="traveldescription-img-design" src={url} alt="location" />
-      <span className="traveldescription-title-design">{location}</span>
-      <p className="traveldescription-text-design">{description}</p>
-
-
-      {!props.favorite ? (
-        <button className="traveldescription-button-design" onClick={() => props.addToFavorites(
-        location,
-        url,
-        description,
-        favorite
-      )}>Add</button>
-      ) 
-      : 
-      (
-  
       <div>
-        <input 
-    
-        placeholder="Add Comment" />
+       
+
+          {!this.props.favorite ? (
+            <div className="traveldescription-description-box">
+             <img className="traveldescription-img-design" src={this.props.url} alt="location" />
+             <span className="traveldescription-title-design">{this.props.location}</span>
+             <p className="traveldescription-text-design">{this.props.description}</p>
+              <button className="traveldescription-button-design" onClick={() => this.props.addToFavorites(
+              this.props.location,
+              this.props.url,
+              this.props.description,
+              this.props.favorite,
+            )}>Add</button>
+            </div>
+            ) 
+            : 
+            (
+            
+            <div className="traveldescription-description-box" style={{ height: 300}} >
+            <img className="traveldescription-img-design" src={this.props.url} alt="location" />
+            <span className="favorites-title-design">{this.props.location}</span>
+            <p className="favorites-text-design">{this.props.userInput}</p>
+            <input className="favorites-input-design" type="text" value={this.state.userInput} onChange={event => this.updateUserInput(event)} />
+  
+            <button className="favorites-button-design" onClick={() => this.props.submitInput(
+              this.props.id,
+              this.state.userInput
+  
+              )}>Submit</button>
+
+              <button className="traveldescription-button-design" onClick={() => this.props.deleteFromFavorites(
+            
+              )}>Delete</button>
+            
+            </div>
+            
+            )
+           
+          }
+  </div>
 
 
-       <button 
-      //  onClick={() => props.updateFavoriteById(id, props.new_input)}
-       >
-        Submit</button>
 
-        <button className="traveldescription-button-design" onClick={() => props.deleteFromFavorites(
-        location,
-        url,
-        // description
-
-      )}>Delete</button>
-
-      </div>
-      )
-
-      }
-
-
-
-
-    </div>
-
-    
-  )
-
+)
+}
 }

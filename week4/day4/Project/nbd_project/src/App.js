@@ -10,13 +10,13 @@ class App extends Component {
      this.state = {
          travelList: [],
          favoritesList: [],
-         new_input: ""
+         userInput: ""
      }
     // BIND THIS
     this.getTravelList = this.getTravelList.bind(this);
     this.addToFavorites = this.addToFavorites.bind(this);
     this.deleteFromFavorites = this.deleteFromFavorites.bind(this);
-    this.updateFavoriteById = this.updateFavoriteById.bind(this);
+    this.submitInput= this.submitInput.bind(this);
   }
 
 
@@ -33,7 +33,7 @@ class App extends Component {
         this.setState({
           travelList: response.data
         })
-        console.log("GET END", this.state.travelList)
+        // console.log("GET END", this.state.travelList)
 
     });
   }
@@ -57,18 +57,21 @@ class App extends Component {
         favoritesList: response.data
       })
     })
-    // console.log("DELETE END", this.state.travelList)
+
   }
 
 
 
-  updateFavoriteById(id, new_input){
-    axios.put(`/api/travel/${id}?new_input=${new_input}`).then( (response) => {
+  submitInput= (id, userInput) =>{
+    console.log(id, userInput)
+    axios.put(`/api/travel/${id}?user_input=${userInput}`).then( (response) => {
       this.setState({
-       favorite: response.data
+       favoritesList: response.data
       })
     })
   }
+
+
 
 
   render(){
@@ -82,9 +85,12 @@ class App extends Component {
     <TravelDescription
      url={element.url}
      location={element.location}
+     userInput={element.user_input}
     //  description={element.description}
   
-     updateFavoriteById={this.updateFavoriteById}
+   
+     submitInput={this.submitInput}
+     id={element.id}
      deleteFromFavorites = {this.deleteFromFavorites}
      favorite={element.favorite}
 
@@ -114,8 +120,8 @@ class App extends Component {
   
     <div>
     < Header />
+    <div className="favoriteslist-container"> {mappedFavoritesList}</div>
     <div className="traveldescription-container"> {mappedTravelDescriptions}</div>
-    <div> {mappedFavoritesList}</div>
     </div>
     )
 

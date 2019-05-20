@@ -4,7 +4,8 @@
     flex-wrap: wrap;
     margin: auto 0;
     justify-content: space-around;
-    width: 60%;
+    width: 80%;
+    padding-top: 10%;
     margin: 0 auto;
 
   }
@@ -27,6 +28,7 @@
 .traveldescription-title-design{
     font-size: 18px;
     text-transform: uppercase;
+    font-weight: bold;
 
 }
 
@@ -44,4 +46,35 @@
     text-transform: uppercase;
     margin-left: 25%;
 
+}
+
+.favorites-text-design{
+    color: white;
+    font-size: 16px;
+}
+
+
+.favorites-button-design{
+    right: 10%;
+    height: 38px;
+    color: white;
+    font-size: 15px;
+    background-color: #7781BB;
+    width: 90px;
+    border: 0.5px solid #7781BB;
+    border-radius: 5px;  
+
+}
+
+.favorites-input-design {
+    width: 200px;
+    height: 30px;
+    border-radius: 2%;
+    margin-bottom: 4px;
+   }
+
+.favorites-title-design {
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
 }

@@ -1,13 +1,13 @@
 .header-img-design {
     width: 100%;
-    height: 400px;
-    padding-bottom: 50px;
+    height: 500px;
+   
 }
 
 .header-searchbar {
   z-index: 10;
   position: absolute;
-  top: 40%;
+  top: 30%;
   right: 40%;
  
 }
@@ -19,6 +19,7 @@
 }
 
 .header-button-design {
+ right: 10%;
  height: 38px;
  color: white;
  font-size: 15px;
@@ -28,9 +29,22 @@
  border-radius: 5px;
 
 }
-/* .header-container{
+
+/* .colmon {
+  border: 1px solid  #2C2448;
   background-color: #2C2448;
-  border: 1px solid black;
-  width: 30%;
-  height: 100%;
+  width: 20%;
+  height: 600%;
+  z-index: 8;
+  position: absolute;
+  top: 86%;
+ 
 } */
+
+.header-container{
+  display: flex;
+  flex-direction: row;
+ 
+  
+}
+

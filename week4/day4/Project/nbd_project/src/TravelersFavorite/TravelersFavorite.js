@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "./TravelersFavorite.css";
 
 export default class TravelersFavorite extends Component {
     constructor(){
@@ -20,10 +20,9 @@ export default class TravelersFavorite extends Component {
         } = this.props;
     
       return (
-        <div >
+        <div>
         <span>{location}</span>
         <img src={url} alt="location" />
-   
         </div>
       )
     }
