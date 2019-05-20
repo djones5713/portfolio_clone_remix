@@ -60,15 +60,16 @@ class App extends Component {
     // console.log("DELETE END", this.state.travelList)
   }
 
+
+
   updateFavoriteById(id, new_input){
-    axios.put(`/api/travel/${id}?new_input=${new_input}`).then(response => {
+    axios.put(`/api/travel/${id}?new_input=${new_input}`).then( (response) => {
       this.setState({
-   
-        favoritesList: response.data
+       favorite: response.data
       })
     })
   }
-   
+
 
   render(){
     const { travelList } = this.state;
@@ -82,6 +83,7 @@ class App extends Component {
      url={element.url}
      location={element.location}
     //  description={element.description}
+  
      updateFavoriteById={this.updateFavoriteById}
      deleteFromFavorites = {this.deleteFromFavorites}
      favorite={element.favorite}

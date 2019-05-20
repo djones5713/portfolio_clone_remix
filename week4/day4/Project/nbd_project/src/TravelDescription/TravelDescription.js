@@ -39,17 +39,12 @@ export default function TravelDescription(props) {
   
       <div>
         <input 
-        onChange={(e) => {this.props.new_input = e.target.value}
-         
-        } 
-        
-        value={this.props.new_input} 
-        
+    
         placeholder="Add Comment" />
 
 
        <button 
-       onClick={() => props.updateFavoriteById(id, this.props.new_input)}
+      //  onClick={() => props.updateFavoriteById(id, props.new_input)}
        >
         Submit</button>
 
