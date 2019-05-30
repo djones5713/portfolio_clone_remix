@@ -1,0 +1,64 @@
+.Logo {
+    color: gold;
+    font-size: 20px
+}
+
+header div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(23, 21, 21);
+    height: 50px;
+}
+
+
+header li a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+header nav ul {
+    display: flex;
+    text-decoration: none;
+    list-style-type: none;
+    min-width: 400px;
+    justify-content: space-around;
+}
+
+header button {
+    display: none;
+    background-color: gold;
+    text-transform: uppercase;
+    border-radius: 2px;
+    color: white;
+    position: absolute;
+    padding: 10px;
+    right: 30px;
+}
+
+@media screen and (max-width: 700px){
+    header nav {
+        position: fixed;
+        top: 50px;
+        width: 100vw;
+        height: 300px;
+        transform: translate(400px, 0);
+        padding-bottom: 50px;
+        
+    }
+
+    header nav ul {
+        flex-direction: column;
+        height: 300px;
+    }
+
+    header button {
+        display: inline;
+    }
+
+    header .show {
+        background-color: rgb(23, 21, 21);
+        transform: translate(0, 0);
+    }
+}
